@@ -4,10 +4,13 @@
     {
         Penjumlahan angka = new Penjumlahan();
         Console.WriteLine(angka.JumlahTigaAngka<float>(13, 02, 21));
+        SimpleDataBase<float> database = new SimpleDataBase<float>();
+        database.AddNewData(13);
+        database.AddNewData(02);
+        database.AddNewData(21);
+        database.PrintAllData();
     }
 }
-
-
 
 public class Penjumlahan
 {
@@ -18,5 +21,27 @@ public class Penjumlahan
         dynamic angka3 = input3;
         return angka1 + angka2 + angka3;
 
+    }
+}
+
+public class SimpleDataBase<T>
+{
+    private List<T> storedData;
+    private List<DateTime> inputDates = new List<DateTime>();
+    public SimpleDataBase()
+    {
+        storedData = new List<T>();
+    }
+    public void AddNewData(T data)
+    {
+        storedData.Add(data);
+        inputDates.Add(DateTime.Now);
+    }
+    public void PrintAllData()
+    {
+        for(int i = 0; i < storedData.Count; i++)
+        {
+            Console.WriteLine("Data " + (i + 1) + "berisi: " + storedData[i] + ", yang disimpan pada waktu" + inputDates[i]);
+        }
     }
 }
